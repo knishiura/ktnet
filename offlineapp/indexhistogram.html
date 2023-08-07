@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>教材の使い方</title> 
+<script src="ketcindyjs/jquery.min.js"></script> 
+<link rel="stylesheet" href="ketcindyjs/katex/katex11.min.css" /> 
+<script src="ketcindyjs/katex/katex11.min.js"></script> 
+<script src="ketcindyjs/auto-render11.min.js"></script> 
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "[[", right: "]]", display: true},{left: "$", right: "$", display: false}]})});</script> 
+<style> 
+    .nounder { 
+        text-decoration: none; 
+    } 
+</style> 
+</head> 
+<body> 
+<div style="padding: 50px"> 
+<p><font size="10">&emsp;「ヒストグラム」の使い方</font></p>
+<ol><font size="5">
+  <li>データ数を入力し，更新ボタンを押してください．</br>
+   「更新（一様乱数）」ボタンは 0～100 までの数をランダムにデータ数だけ取得します．</br>
+   「更新（二項分布）」ボタンは 0～10 までの数をランダムに10個取得し，それらを足し合わせた数をデータ数だけ取得します．</br>
+    &emsp;&emsp;(注) 二項分布は第3章で学習します．</li>
+  <li>階級数のスライダーを動かすことで，階級数に対応する度数分布表とヒストグラムを表示します．</li>
+  <li>「度数折れ線」ボタンは度数折れ線を表示します．</li>
+  <li>「スタージェスの公式」ボタンはスタージェスの公式から階級数を計算し，計算結果を表示します．</br>
+    &emsp;&emsp;スタージェスの公式は階級数の目安を定める公式で</br>
+    &emsp;&emsp;&emsp;&emsp;k=1+fr(log(n),log(2)) &emsp; (kは階級数，nはデータ数)</br>
+    &emsp;&emsp;で与えられます．</br>
+    &emsp;&emsp;(注) fr(a,b)は分子がa，分母がbの分数を，log(x)は常用対数を表します．KeTMath数式ルールを参照してください．</li>
+  <li>「背面描画」ボタンおよび「前面描画」ボタンはスタージェスの公式から得られた階級数のヒストグラムを，それぞれ元のヒストグラムの背面および前面に表示します．</li>
+ </font></ol>
+</div>
+</body> 
+</html> 
