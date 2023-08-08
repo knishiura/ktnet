@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>教材の使い方</title> 
+<script src="ketcindyjs/jquery.min.js"></script> 
+<link rel="stylesheet" href="ketcindyjs/katex/katex11.min.css" /> 
+<script src="ketcindyjs/katex/katex11.min.js"></script> 
+<script src="ketcindyjs/auto-render11.min.js"></script> 
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "[[", right: "]]", display: true},{left: "$", right: "$", display: false}]})});</script> 
+<style> 
+    .nounder { 
+        text-decoration: none; 
+    } 
+</style> 
+</head> 
+<body> 
+<div style="padding: 50px"> 
+<p><font size="10">&emsp;「二項分布分布とポアソン分布」の説明</font></p>
+<p><font size="5">二項分布&emsp;$0< p <1,\ q=1-p$</font></p>
+<p><font size="5">&emsp;&emsp;$P(X=k)={}_{n}{\mathrm C}_k\,p^k q^{n-k}\quad(\,k=0,\ 1,\ 2,\ \cdots n\,)$</font></p>
+            <p><font size="5">ポアソン分布&emsp;$\lambda > 0$</font></p>
+<p><font size="5">&emsp;&emsp;$P(X=k)=e^{-\lambda}\dfrac{{\lambda}^k}{k!}\quad(\,k=0,\ 1,\ 2,\ \cdots \,)$</font></p>
+<p><font size="5">
+&emsp;二項分布の平均 $np$ とポアソン分布の平均 $\lambda$ が等しいとき，$n$ を大きく，したがって $p$ を小さくするとグラフは重なってくることがわかる．
+すなわち，二項分布 $B(n,\ p)$ は，$n$ が十分大きく，したがって $p$ が十分に小さいとき，平均が $\lambda=np$ であるポアソン分布 $P_{o}(\lambda)$ により近似することができる．
+</font></p>
+</div>
+</body> 
+</html> 
