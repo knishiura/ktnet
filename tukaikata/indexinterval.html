@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>教材の使い方</title> 
+<script src="ketcindyjs/jquery.min.js"></script> 
+<link rel="stylesheet" href="ketcindyjs/katex/katex11.min.css" /> 
+<script src="ketcindyjs/katex/katex11.min.js"></script> 
+<script src="ketcindyjs/auto-render11.min.js"></script> 
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "[[", right: "]]", display: true},{left: "$", right: "$", display: false}]})});</script> 
+<style> 
+    .nounder { 
+        text-decoration: none; 
+    } 
+</style> 
+</head> 
+<body> 
+<div style="padding: 50px"> 
+<p><font size="10">&emsp;「区間推定」の使い方</font></p>
+<ol><font size="5">
+  <li>「〇」のついたところ</br>
+　　何％信頼区間か，標本数 $n$，$\overline{X}$の実現値，$U^2$の実現値，
+表示範囲の下端，上端</br>
+の値を変えることができます．</br>
+「〇」をクリックして赤くなったところの値をキーボードから入力できます．</br>
+「減」「増」で変えることもできます．</li>
+  <li>自由度 $n-1$ の $t$ 分布のグラフに，
+信頼区間の％に応じて，$t=0$ を中心として</br>
+どこからどこまでの確率がその％になるかがわかるように，
+境界線が表示されます．</li> 
+  <li>$T=\dfrac{\overline{X}-\mu}{\sqrt{U^2/n}}$
+の実現値がその範囲に入るような $\mu$ の区間が信頼区間であり，</br>
+一番下に表示されます．</br>
+「手動」「自動」「結果」のどれかをクリックして選んでください．</br>
+選んだものの下に青丸がつきます．</li>
+<li>「手動」の場合，$\mu$ の赤丸をクリックしながら左右に動かします．</br>
+「自動」の場合，$\mu$ が自動で動きます．</br>
+「結果」の場合，信頼区間が表示され</br>
+　　何％信頼区間か，標本数 $n$，$\overline{X}$の実現値，$U^2$の実現値，
+表示範囲の下端，上端</br>
+の値を変えると信頼区間がどのように変わるのかを見ることができます．
+</li>
+ </font></ol>
+</div>
+</body> 
+</html> 
