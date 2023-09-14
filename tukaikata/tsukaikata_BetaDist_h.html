@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title>教材の使い方</title> 
+<script src="ketcindyjs/jquery.min.js"></script> 
+<link rel="stylesheet" href="ketcindyjs/katex/katex11.min.css" /> 
+<script src="ketcindyjs/katex/katex11.min.js"></script> 
+<script src="ketcindyjs/auto-render11.min.js"></script> 
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "[[", right: "]]", display: true},{left: "$", right: "$", display: false}]})});</script> 
+<style> 
+    .nounder { 
+        text-decoration: none; 
+    } 
+</style> 
+</head> 
+<body> 
+<div style="padding: 50px"> 
+<p><font size="10">&emsp;「ベータ分布のベイズ推定」の使い方</font></p>
+<p><font size="5">事前分布の$Beta(p,q)$のパラメータ$p,q$を設定します．</font></p>
+<p><font size="5">このアプリでは$p,q$は正の整数です。直接数値を入力するか$+,-$のボタンで設定してください．</font></p>
+<p><font size="5">二項分布の観測された結果を同様に入力します．</font></p>
+<p><font size="5">事後分布となるベータ分布のパラメータが計算され，事前分布とともにグラフ表示されます．</font></p>
+<p><font size="5">同時に事後確率最大値(MAP)，事後期待値(EAP)が計算されます．．</font></p>
+</div>
+</body> 
+</html> 
