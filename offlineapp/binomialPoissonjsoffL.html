@@ -9,7 +9,7 @@
             margin: 0px;
             padding: 0px;
         }
-
+        
         #CSConsole {
             background-color: #FAFAFA;
             border-top: 1px solid #333333;
@@ -2056,6 +2056,32 @@ Drwexpr(pos,str,sz,clr):=(
   if(!isstring(str),tmp=text(str),tmp=str);
   drawtext(pos,"$"+tmp+"$",size->sz,color->clr);
 );
+Settextkey(num,pos,name,script):=
+    Settextkey(num,pos,name,script,18,0,0.2);
+Settextkey(num,pos,name,script,size):= // 230206added
+    Settextkey(num,pos,name,script,size,0,0.2);
+Settextkey(num,pos,name,script,size,fill,alpha):=(
+  regional(id,pid,tmp,tmp1,tmp2);
+  id="Text"+num;
+  tmp=Allelements();
+  tmp=apply(tmp,#.name);
+  tmp=select(tmp,indexof(#,"Text")>0);
+  if(!contains(tmp,id),
+    create([id],"Text",[1,1,1]);
+  );
+  pid=parse(id);
+  tmp=id+".xy="+pos+";";
+  parse(tmp);
+  inspect(pid,"text.text",name);
+  inspect(pid,"textsize",size);
+  inspect(pid,"colorfill",fill);
+  inspect(pid,"fillalpha",alpha);
+  if(length(script)>0,
+    inspect(pid,"textbutton",true);
+    inspect(pid,"texttoggle",true);
+    inspect(pid,"button.script",script);
+  );
+);
 Ketinit():=Ketinit("fig",0.3); //190831from
 Ketinit(Arg):=(//181001from
   if(isstring(Arg),
@@ -2223,32 +2249,6 @@ Setax(arg1,arg2,arg3):=(
   AXSTYLE_2=arg2;
   AXSTYLE_3=arg3;
   AXSTYLE;
-);
-Settextkey(num,pos,name,script):=
-    Settextkey(num,pos,name,script,18,0,0.2);
-Settextkey(num,pos,name,script,size):= // 230206added
-    Settextkey(num,pos,name,script,size,0,0.2);
-Settextkey(num,pos,name,script,size,fill,alpha):=(
-  regional(id,pid,tmp,tmp1,tmp2);
-  id="Text"+num;
-  tmp=Allelements();
-  tmp=apply(tmp,#.name);
-  tmp=select(tmp,indexof(#,"Text")>0);
-  if(!contains(tmp,id),
-    create([id],"Text",[1,1,1]);
-  );
-  pid=parse(id);
-  tmp=id+".xy="+pos+";";
-  parse(tmp);
-  inspect(pid,"text.text",name);
-  inspect(pid,"textsize",size);
-  inspect(pid,"colorfill",fill);
-  inspect(pid,"fillalpha",alpha);
-  if(length(script)>0,
-    inspect(pid,"textbutton",true);
-    inspect(pid,"texttoggle",true);
-    inspect(pid,"button.script",script);
-  );
 );
 Setscaling(sc):=(
   regional(tmp);
@@ -2806,7 +2806,7 @@ Arrowhead(nm,pointorg,directionorg,optionsorg):=(//191129remade
        options=remove(options,[#]);
      );
   );
-  list=Arrowheaddata(point,direction,options);
+   list=Arrowheaddata(point,direction,options);
   if(length(point)>1, //210724from
     if(!Inwindow(point),Noflg=2);
     if(isstring(direction),
@@ -2846,9 +2846,18 @@ Arrowhead(nm,pointorg,directionorg,optionsorg):=(//191129remade
 );
 Arrowheaddata(point,direction):=
    Arrowheaddata(point,direction,[YaSize,YaAngle,YaPosition,YaCut]);
-Arrowheaddata(point,direction,options):=( //191127remade
-  regional(scaley,Eps,size,angle,segpos,cut, Houkou,hflg,Str,Ev,Nv,
-       reL,pP,vec,pA,pB,pC,par,out,tmp,tmp1,tmp2);
+Arrowheaddata(pointorg,directionorg,options):=( //191127remade
+  regional(point,direction,scaley,Eps,size,angle,segpos,cut, 
+            Houkou,hflg,Str,Ev,Nv,reL,pP,vec,
+            pA,pB,pC,par,out,tmp,tmp1,tmp2);
+  point=Pcrd(pointorg); //230830from
+  tmp=directionorg;
+  if(isstring(tmp),
+    tmp=parse(tmp);
+    direction=apply(tmp,Pcrd(#)); //230830to 
+  ,
+    direction=Pcrd(tmp);
+  );
   Eps=10^(-4);
   tmp=Divoptions(options);
   reL=tmp_6;
@@ -4249,21 +4258,16 @@ okflg=0;
 <script id="csdraw" type="text/x-cindyscript">
 Ketinit();
 
-Setax(["l","k","e1.5","P","n0.5","O","sw","Size=1"]);
+Setax(["l","k","e1.5","P","n0.5","O","sw"],["Size=1"]);
 nameL=Keyname();
 nmove=[0,-0.1];
 dy=6; dx=8;
 Keytable(3,dx,4,dy,[6.8,-0.2],[1,1,0],nameL,nmove,17);
-if(1==0,
-  Settextkey(11,[0.5,3.8],"$n\!=\!5$","nflg1=1-nflg1;nflg2=0;nflg3=0;nflg4=0;",12);
-  Settextkey(12,[1.4,3.8],"$n\!=\!10$","nflg1=0;nflg2=1-nflg2;nflg3=0;nflg4=0;",12);
-  Settextkey(13,[2.4,3.8],"$n\!=\!20$","nflg1=0;nflg2=0;nflg3=1-nflg3;nflg4=0;",12);
-  Settextkey(14,[3.4,3.8],"$n\!=\!30$","nflg1=0;nflg2=0;nflg3=0;nflg4=1-nflg4;",12);
-);
+
 YScale=6;
 Setscaling(YScale);
 Setwindow([-0.37,6.37],[-0.05,0.55]);
-nL=[5,10,20,50];
+nL=[5,10,20,30];
 nl=length(nL);
 Seteditable(10,["","Size=18","Width=60"]);
 l=Textedit(10,"0");
@@ -4333,6 +4337,7 @@ Htickmark(hL);
 vL=apply(1..5,[0.1*#,"w2",text(0.1*#)]);
 vL=flatten(vL);
 Vtickmark(vL);
+
 Windispg();
 ;
 
@@ -4372,15 +4377,15 @@ var cdy = CindyJS({
     {name: "Text23", type: "Button", pos: [4.0, -0.004672897196261683, 0.4672897196261682], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "okflg=1;", text: "　　", textsize: 18.0}
   ],
   ports: [{
-    id: "CSCanvas",
     width: 859,
-    height: 379,
-    transform: [{visibleRect: [-2.5056715379595036, 5.128430530963843, 10.90474497984245, -0.7883888639685664]}],
+    height: 362,
+    id: "CSCanvas",
+    transform: [{visibleRect: [-2.5056715379595036, 5.128430530963843, 10.90474497984245, -0.5229906325336036]}],
     background: "rgb(247,247,247)"
   }],
   csconsole: false,
   use: ["katex"],
-  cinderella: {build: 2071, version: [3, 0, 2071]}
+  cinderella: {build: 2080, version: [3, 0, 2080]}
 });
     </script>
 </head>
